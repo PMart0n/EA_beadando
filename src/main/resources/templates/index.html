@@ -6,40 +6,63 @@
 
     <section id="intro" class="wrapper style1 fullscreen fade-up">
         <div class="inner">
-            <h1>EA Beadandó</h1>
-            <p>Java Alkalmazások tantárgy beadandó feladata.<br />
-                Készítette: [Nev1] és [Nev2]</p>
+            <h1>Pénzügyi Integrációs Portál</h1>
+            <p>
+                Java Spring Boot alapú webalkalmazás banki és tőzsdei adatok integrálására.<br />
+                Készítette: <strong>[Nev1]</strong> és <strong>[Nev2]</strong>
+            </p>
             <ul class="actions">
-                <li><a href="#one" class="button scrolly">Tovább</a></li>
+                <li><a href="#one" class="button scrolly">Modulok megtekintése</a></li>
             </ul>
         </div>
     </section>
 
     <section id="one" class="wrapper style2 spotlights">
+
         <section>
-            <a href="#" class="image"><img th:src="@{/images/pic01.jpg}" alt="" data-position="center center" /></a>
             <div class="content">
                 <div class="inner">
-                    <h2>SOAP Kliens (MNB)</h2>
-                    <p>Az MNB hivatalos árfolyamainak lekérdezése SOAP protokollon keresztül, grafikonos megjelenítéssel.</p>
+                    <h2>MNB SOAP Kliens</h2>
+                    <p>
+                        Ez a modul a <strong>Magyar Nemzeti Bank</strong> hivatalos webszolgáltatásával (ArfolyamService) létesít biztonságos kapcsolatot.
+                        A megoldás demonstrálja a klasszikus nagyvállalati <strong>SOAP protokoll</strong> használatát Java környezetben.
+                    </p>
+                    <p>
+                        <strong>Implementált funkciók:</strong>
+                    </p>
+                    <ul>
+                        <li>
+                            <strong>WSDL alapú kódgenerálás:</strong> A kliens oldali Java osztályokat a Maven JAX-WS pluginja generálja automatikusan a szolgáltatásleíró alapján.
+                        </li>
+                        <li>
+                            <strong>XML Feldolgozás:</strong> A szerver válaszaként érkező nyers XML adatfolyamot DOM Parser segítségével dolgozzuk fel és alakítjuk Java objektumokká.
+                        </li>
+                        <li>
+                            <strong>Adatvizualizáció:</strong> A kinyert árfolyamadatokat a frontend oldalon a <em>Chart.js</em> könyvtár segítségével interaktív vonaldiagramon ábrázoljuk.
+                        </li>
+                    </ul>
                     <ul class="actions">
-                        <li><a th:href="@{/soap}" class="button">Megnyitás</a></li>
+                        <li><a th:href="@{/soap}" class="button">Árfolyamok lekérdezése</a></li>
                     </ul>
                 </div>
             </div>
         </section>
+
         <section>
-            <a href="#" class="image"><img th:src="@{/images/pic02.jpg}" alt="" data-position="top center" /></a>
             <div class="content">
                 <div class="inner">
-                    <h2>Forex Kliens (Oanda)</h2>
-                    <p>Valós idejű devizakereskedés szimulációja REST API használatával. Számlainfó, árfolyamok, pozíciók.</p>
+                    <h2>Oanda Forex Kereskedés</h2>
+                    <p>
+                        Valós idejű devizakereskedési szimuláció az <strong>Oanda v20 REST API</strong> segítségével.
+                        A modul teljes körű hozzáférést biztosít a kereskedési fiókhoz, beleértve a számlaadatokat, árakat és pozíciók kezelését.
+                    </p>
                     <ul class="actions">
-                        <li><a th:href="@{/forex-account}" class="button">Megnyitás</a></li>
+                        <li><a th:href="@{/forex-account}" class="button">Kereskedés indítása</a></li>
                     </ul>
                 </div>
             </div>
         </section>
+
     </section>
 
 </div>
