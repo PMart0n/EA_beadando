@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<div th:fragment="content">
+
+    <section id="intro" class="wrapper style1 fullscreen fade-up">
+        <div class="inner">
+            <h1>EA Beadandó</h1>
+            <p>Java Alkalmazások tantárgy beadandó feladata.<br />
+                Készítette: [Nev1] és [Nev2]</p>
+            <ul class="actions">
+                <li><a href="#one" class="button scrolly">Tovább</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="one" class="wrapper style2 spotlights">
+        <section>
+            <a href="#" class="image"><img th:src="@{/images/pic01.jpg}" alt="" data-position="center center" /></a>
+            <div class="content">
+                <div class="inner">
+                    <h2>SOAP Kliens (MNB)</h2>
+                    <p>Az MNB hivatalos árfolyamainak lekérdezése SOAP protokollon keresztül, grafikonos megjelenítéssel.</p>
+                    <ul class="actions">
+                        <li><a th:href="@{/soap}" class="button">Megnyitás</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section>
+            <a href="#" class="image"><img th:src="@{/images/pic02.jpg}" alt="" data-position="top center" /></a>
+            <div class="content">
+                <div class="inner">
+                    <h2>Forex Kliens (Oanda)</h2>
+                    <p>Valós idejű devizakereskedés szimulációja REST API használatával. Számlainfó, árfolyamok, pozíciók.</p>
+                    <ul class="actions">
+                        <li><a th:href="@{/forex-account}" class="button">Megnyitás</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </section>
+
+</div>
+
+</body>
+</html>

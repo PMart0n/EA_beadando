@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="content">
+    <section class="wrapper style1 fade-up">
+        <div class="inner">
+            <h2>MNB Árfolyam Lekérdezés</h2>
+            <form action="#" th:action="@{/soap}" th:object="${param}" method="post">
+                <div class="fields">
+                    <div class="field half">
+                        <label>Deviza</label>
+                        <select th:field="*{currency}" style="color: black;"> <option value="EUR">EUR</option>
+                            <option value="USD">USD</option>
+                            <option value="GBP">GBP</option>
+                        </select>
+                    </div>
+                    <div class="field half"></div>
+                    <div class="field half">
+                        <label>Kezdő dátum</label>
+                        <input type="date" th:field="*{startDate}" />
+                    </div>
+                    <div class="field half">
+                        <label>Záró dátum</label>
+                        <input type="date" th:field="*{endDate}" />
+                    </div>
+                </div>
+                <ul class="actions">
+                    <li><input type="submit" value="Lekérdezés" class="button submit" /></li>
+                </ul>
+            </form>
+        </div>
+    </section>
+</div>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>EA Beadandó</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+    <link rel="stylesheet" th:href="@{/assets/css/main.css}" />
+    <noscript><link rel="stylesheet" th:href="@{/assets/css/main.css}" /></noscript>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        input[type="date"] {
+            color-scheme: light;
+            color: #000;
+        }
+    </style>
+</head>
+<body class="is-preload">
+
+<section id="sidebar">
+    <div class="inner">
+        <nav>
+            <ul>
+                <li><a th:href="@{/}">Főoldal</a></li>
+                <li><a th:href="@{/soap}">SOAP (MNB)</a></li>
+                <li><a th:href="@{/forex-account}">Forex: Számla</a></li>
+                <li><a th:href="@{/forex-aktar}">Forex: Aktuális Ár</a></li>
+                <li><a th:href="@{/forex-histar}">Forex: Historikus Ár</a></li>
+                <li><a th:href="@{/forex-nyit}">Forex: Pozíció Nyitás</a></li>
+                <li><a th:href="@{/forex-poziciok}">Forex: Nyitott Pozíciók</a></li>
+                <li><a th:href="@{/forex-zar}">Forex: Pozíció Zárás</a></li>
+            </ul>
+        </nav>
+    </div>
+</section>
+
+<div id="wrapper">
+    <div th:replace="~{${contentFile} :: content}"></div>
+</div>
+
+<footer id="footer" class="wrapper style1-alt">
+    <div class="inner">
+        <ul class="menu">
+            <li>&copy; EA Beadandó. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+        </ul>
+    </div>
+</footer>
+
+<script th:src="@{/assets/js/jquery.min.js}"></script>
+<script th:src="@{/assets/js/jquery.scrollex.min.js}"></script>
+<script th:src="@{/assets/js/jquery.scrolly.min.js}"></script>
+<script th:src="@{/assets/js/browser.min.js}"></script>
+<script th:src="@{/assets/js/breakpoints.min.js}"></script>
+<script th:src="@{/assets/js/util.js}"></script>
+<script th:src="@{/assets/js/main.js}"></script>
+
+</body>
+</html>

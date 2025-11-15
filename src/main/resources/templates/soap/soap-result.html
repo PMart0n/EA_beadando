@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="content">
+    <section class="wrapper style1 fade-up">
+        <div class="inner">
+            <h2>Eredmények</h2>
+            <div style="background: white; padding: 20px; border-radius: 5px;">
+                <canvas id="myChart"></canvas>
+            </div>
+            <br>
+            <ul class="actions">
+                <li><a th:href="@{/soap}" class="button">Új lekérdezés</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+
+
+        var labelsData = /*[[${chartLabels}]]*/ [];
+        var ratesData = /*[[${chartData}]]*/ [];
+
+        const ctx = document.getElementById('myChart');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labelsData,
+                datasets: [{
+                    label: 'Árfolyam',
+                    data: ratesData,
+                    borderColor: 'rgb(75, 192, 192)',
+                    tension: 0.1
+                }]
+            }
+        });
+        /*]]>*/
+    </script>
+</div>
+</body>
+</html>
