@@ -1,17 +1,26 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<body>
-<div th:fragment="content">
-    <section class="wrapper style1 fade-up">
-        <div class="inner">
-            <h2>Számlainformációk</h2>
-            <p>Fejlesztő  munkája.</p>
+<h2>Számlainformációk</h2>
 
-            <ul class="actions">
-                <li><a th:href="@{/}" class="button">Vissza a főoldalra</a></li>
-            </ul>
-        </div>
-    </section>
+<div style="background: white; padding: 20px; color: black; border-radius: 5px;">
+    <table>
+        <tr>
+            <th>Számla ID</th>
+            <td th:text="${account.id}"></td>
+        </tr>
+        <tr>
+            <th>Egyenleg</th>
+            <td th:text="${account.balance}"></td>
+        </tr>
+        <tr>
+            <th>Nem realizált P/L</th>
+            <td th:text="${account.unrealizedPL}"></td>
+        </tr>
+        <tr>
+            <th>Számlatípus</th>
+            <td th:text="${account.accountType}"></td>
+        </tr>
+    </table>
 </div>
-</body>
-</html>
+
+<ul class="actions">
+    <li><a th:href="@{/}" class="button">Vissza a főoldalra</a></li>
+</ul>
