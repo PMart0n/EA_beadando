@@ -42,6 +42,7 @@ public class ForexController {
     }
 
     // --- 3. Historikus Ár ---
+    // --- 3. Historikus Ár ---
     @GetMapping("/forex-histar")
     public String histarForm(Model model) {
         model.addAttribute("param", new MessageHistPrice());
@@ -51,8 +52,14 @@ public class ForexController {
 
     @PostMapping("/forex-histar")
     public String histarResult(@ModelAttribute MessageHistPrice messageHistPrice, Model model) throws Exception {
+
         model.addAttribute("candles",
-                forexService.getHistoricalPrices(messageHistPrice.getInstrument(), messageHistPrice.getGranularity()));
+                forexService.getHistoricalPrices(
+                        messageHistPrice.getInstrument(),
+                        messageHistPrice.getGranularity()
+                )
+        );
+
         model.addAttribute("contentFile", "forex/forex-histar-result");
         return "layout";
     }

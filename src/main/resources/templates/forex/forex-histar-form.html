@@ -1,17 +1,29 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<body>
-<div th:fragment="content">
-    <section class="wrapper style1 fade-up">
-        <div class="inner">
-            <h2>Historikus ár űrlap</h2>
-            <p>Fejlesztő  munkája.</p>
+<h2>10 utolsó historikus gyertya lekérdezése</h2>
 
-            <ul class="actions">
-                <li><a th:href="@{/}" class="button">Vissza a főoldalra</a></li>
-            </ul>
+<form method="post" th:action="@{/forex-histar}" th:object="${param}">
+    <div class="fields">
+
+        <div class="field">
+            <label>Instrumentum</label>
+            <select th:field="*{instrument}" style="color:black;">
+                <option value="EUR_USD">EUR/USD</option>
+                <option value="GBP_USD">GBP/USD</option>
+                <option value="USD_JPY">USD/JPY</option>
+            </select>
         </div>
-    </section>
-</div>
-</body>
-</html>
+
+        <div class="field">
+            <label>Granularity</label>
+            <select th:field="*{granularity}" style="color:black;">
+                <option value="D">D - Daily</option>
+                <option value="H1">H1 - Hourly</option>
+                <option value="M15">M15 - 15 perc</option>
+            </select>
+        </div>
+
+    </div>
+
+    <ul class="actions">
+        <li><input type="submit" value="Lekérdezés" class="button primary"/></li>
+    </ul>
+</form>

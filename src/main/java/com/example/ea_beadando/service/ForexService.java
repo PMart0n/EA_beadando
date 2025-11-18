@@ -3,6 +3,9 @@ package com.example.ea_beadando.service;
 import com.oanda.v20.Context;
 import com.oanda.v20.ContextBuilder;
 import com.oanda.v20.account.*;
+import com.oanda.v20.instrument.CandlestickGranularity;
+import com.oanda.v20.instrument.InstrumentCandlesRequest;
+import com.oanda.v20.instrument.InstrumentContext;
 import com.oanda.v20.pricing.*;
 import com.oanda.v20.primitives.InstrumentName;
 import org.springframework.stereotype.Service;
@@ -47,6 +50,17 @@ public class ForexService {
             return response.getPrices().get(0);
         }
         return null;
+    }
+
+    // 3. Historikus árak (10 utolsó gyertya)
+    public CandlestickResponse getHistoricalPrices(String instrument, String granularity) throws Exception {
+
+        InstrumentCandlesRequest req = new InstrumentCandlesRequest(new InstrumentName(instrument));
+        req.setGranularity(CandlestickGranularity.valueOf(granularity)); // pl. D, H1, M15
+        req.setCount(10); // 10 utolsó gyertya
+
+        InstrumentContext ic = new InstrumentContext(ctx);
+        return ic.candles(req);
     }
 
 }
