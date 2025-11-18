@@ -5,6 +5,7 @@ import com.oanda.v20.ContextBuilder;
 import com.oanda.v20.account.*;
 import com.oanda.v20.instrument.CandlestickGranularity;
 import com.oanda.v20.instrument.InstrumentCandlesRequest;
+import com.oanda.v20.instrument.InstrumentCandlesResponse;
 import com.oanda.v20.instrument.InstrumentContext;
 import com.oanda.v20.order.MarketOrderRequest;
 import com.oanda.v20.order.OrderContext;
@@ -12,6 +13,7 @@ import com.oanda.v20.order.OrderCreateRequest;
 import com.oanda.v20.order.OrderCreateResponse;
 import com.oanda.v20.pricing.*;
 import com.oanda.v20.primitives.InstrumentName;
+import com.oanda.v20.trade.*;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
@@ -57,11 +59,11 @@ public class ForexService {
     }
 
     // 3. Historikus árak (10 utolsó gyertya)
-    public CandlestickResponse getHistoricalPrices(String instrument, String granularity) throws Exception {
+    public InstrumentCandlesResponse getHistoricalPrices(String instrument, String granularity) throws Exception {
 
         InstrumentCandlesRequest req = new InstrumentCandlesRequest(new InstrumentName(instrument));
-        req.setGranularity(CandlestickGranularity.valueOf(granularity)); // pl. D, H1, M15
-        req.setCount(10); // 10 utolsó gyertya
+        req.setGranularity(CandlestickGranularity.valueOf(granularity)); // D, H1, M15 stb.
+        req.setCount(10L);
 
         InstrumentContext ic = new InstrumentContext(ctx);
         return ic.candles(req);
@@ -79,6 +81,24 @@ public class ForexService {
         req.setOrder(mr);
 
         return oc.create(req);
+    }
+
+    // 5. Nyitott pozíciók lekérése
+    public TradeListOpenResponse listOpenTrades() throws Exception {
+        TradeContext tc = new TradeContext(ctx);
+        return tc.listOpen(accountId);
+    }
+
+    // 6. Pozíció zárása
+    public TradeCloseResponse closeTrade(long tradeId) throws Exception {
+        TradeContext tc = new TradeContext(ctx);
+
+        TradeSpecifier spec = new TradeSpecifier(String.valueOf(tradeId));
+
+        TradeCloseRequest req = new TradeCloseRequest(accountId, spec);
+        req.setUnits("ALL"); // teljes pozíció zárása
+
+        return tc.close(spec, req);
     }
 
 }

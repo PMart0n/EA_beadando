@@ -104,7 +104,11 @@ public class ForexController {
 
     @PostMapping("/forex-zar")
     public String zarResult(@ModelAttribute MessageClosePosition messageClosePosition, Model model) throws Exception {
-        model.addAttribute("result", forexService.closeTrade(messageClosePosition.getTradeId()));
+
+        model.addAttribute("result",
+                forexService.closeTrade(messageClosePosition.getTradeId())
+        );
+
         model.addAttribute("contentFile", "forex/forex-zar-result");
         return "layout";
     }
