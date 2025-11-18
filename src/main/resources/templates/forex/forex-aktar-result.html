@@ -1,17 +1,14 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<body>
-<div th:fragment="content">
-    <section class="wrapper style1 fade-up">
-        <div class="inner">
-            <h2>Aktuális ár eredmény</h2>
-            <p>Fejlesztő  munkája.</p>
+<h2>Aktuális ár – <span th:text="${instrument}"></span></h2>
 
-            <ul class="actions">
-                <li><a th:href="@{/}" class="button">Vissza a főoldalra</a></li>
-            </ul>
-        </div>
-    </section>
+<div style="background: white; padding: 20px; border-radius:5px; color:black;">
+
+    <p><strong>Bid:</strong> <span th:text="${price.closeoutBid}"></span></p>
+    <p><strong>Ask:</strong> <span th:text="${price.closeoutAsk}"></span></p>
+
 </div>
-</body>
-</html>
+
+<br/>
+
+<ul class="actions">
+    <li><a th:href="@{/forex-aktar}" class="button">Új lekérdezés</a></li>
+</ul>

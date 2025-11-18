@@ -26,7 +26,6 @@ public class ForexController {
         return "layout";
     }
 
-    // --- 2. Aktuális Ár ---
     @GetMapping("/forex-aktar")
     public String aktarForm(Model model) {
         model.addAttribute("par", new MessageActPrice());
