@@ -74,8 +74,14 @@ public class ForexController {
 
     @PostMapping("/forex-nyit")
     public String nyitResult(@ModelAttribute MessageOpenPosition messageOpenPosition, Model model) throws Exception {
+
         model.addAttribute("result",
-                forexService.openPosition(messageOpenPosition.getInstrument(), messageOpenPosition.getUnits()));
+                forexService.openPosition(
+                        messageOpenPosition.getInstrument(),
+                        messageOpenPosition.getUnits()
+                )
+        );
+
         model.addAttribute("contentFile", "forex/forex-nyit-result");
         return "layout";
     }

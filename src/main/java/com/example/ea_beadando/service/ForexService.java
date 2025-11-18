@@ -6,6 +6,10 @@ import com.oanda.v20.account.*;
 import com.oanda.v20.instrument.CandlestickGranularity;
 import com.oanda.v20.instrument.InstrumentCandlesRequest;
 import com.oanda.v20.instrument.InstrumentContext;
+import com.oanda.v20.order.MarketOrderRequest;
+import com.oanda.v20.order.OrderContext;
+import com.oanda.v20.order.OrderCreateRequest;
+import com.oanda.v20.order.OrderCreateResponse;
 import com.oanda.v20.pricing.*;
 import com.oanda.v20.primitives.InstrumentName;
 import org.springframework.stereotype.Service;
@@ -61,6 +65,20 @@ public class ForexService {
 
         InstrumentContext ic = new InstrumentContext(ctx);
         return ic.candles(req);
+    }
+    // 4. Pozíció nyitás (Market Order)
+    public OrderCreateResponse openPosition(String instrument, int units) throws Exception {
+
+        OrderContext oc = new OrderContext(ctx);
+
+        MarketOrderRequest mr = new MarketOrderRequest();
+        mr.setInstrument(new InstrumentName(instrument));
+        mr.setUnits(units); // pozitív = long, negatív = short
+
+        OrderCreateRequest req = new OrderCreateRequest(accountId);
+        req.setOrder(mr);
+
+        return oc.create(req);
     }
 
 }

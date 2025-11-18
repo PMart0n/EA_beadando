@@ -1,17 +1,25 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<body>
-<div th:fragment="content">
-    <section class="wrapper style1 fade-up">
-        <div class="inner">
-            <h2>Pozíció nyitás űrlap</h2>
-            <p>Fejlesztő  munkája.</p>
+<h2>Pozíció nyitása</h2>
 
-            <ul class="actions">
-                <li><a th:href="@{/}" class="button">Vissza a főoldalra</a></li>
-            </ul>
+<form method="post" th:action="@{/forex-nyit}" th:object="${param}">
+    <div class="fields">
+
+        <div class="field">
+            <label>Instrumentum</label>
+            <select th:field="*{instrument}" style="color:black;">
+                <option value="EUR_USD">EUR/USD</option>
+                <option value="GBP_USD">GBP/USD</option>
+                <option value="USD_JPY">USD/JPY</option>
+            </select>
         </div>
-    </section>
-</div>
-</body>
-</html>
+
+        <div class="field">
+            <label>Mennyiség (pozitív=LONG, negatív=SHORT)</label>
+            <input type="number" th:field="*{units}" style="color:black;" />
+        </div>
+
+    </div>
+
+    <ul class="actions">
+        <li><input type="submit" value="Pozíció nyitása" class="button primary"/></li>
+    </ul>
+</form>
