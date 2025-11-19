@@ -1,29 +1,42 @@
-<h2>10 utolsó historikus gyertya</h2>
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
 
-<table>
-    <thead>
-    <tr>
-        <th>Idő</th>
-        <th>Nyitó</th>
-        <th>Záró</th>
-        <th>Minimum</th>
-        <th>Maximum</th>
-    </tr>
-    </thead>
+<div th:fragment="content">
 
-    <tbody>
-    <tr th:each="c : ${candles.candles}">
-        <td th:text="${c.time}"></td>
-        <td th:text="${c.mid.open}"></td>
-        <td th:text="${c.mid.close}"></td>
-        <td th:text="${c.mid.low}"></td>
-        <td th:text="${c.mid.high}"></td>
-    </tr>
-    </tbody>
-</table>
+    <section class="wrapper style1 fade-up">
+        <div class="inner">
+            <h2>10 utolsó historikus gyertya</h2>
 
-<br/>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Idő</th>
+                        <th>Nyitó (Open)</th>
+                        <th>Maximum (High)</th>
+                        <th>Minimum (Low)</th>
+                        <th>Záró (Close)</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="c : ${candles.candles}">
+                        <td th:text="${c.time}"></td>
+                        <td th:text="${c.mid.o}"></td> <td th:text="${c.mid.h}"></td> <td th:text="${c.mid.l}"></td> <td th:text="${c.mid.c}"></td> </tr>
+                    </tbody>
+                </table>
+            </div>
 
-<ul class="actions">
-    <li><a th:href="@{/forex-histar}" class="button">Új lekérdezés</a></li>
-</ul>
+            <br/>
+
+            <ul class="actions">
+                <li><a th:href="@{/forex-histar}" class="button primary">Új lekérdezés</a></li>
+                <li><a th:href="@{/}" class="button">Vissza a főoldalra</a></li>
+            </ul>
+        </div>
+    </section>
+
+</div>
+
+</body>
+</html>

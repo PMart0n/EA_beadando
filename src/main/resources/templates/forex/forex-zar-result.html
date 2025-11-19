@@ -1,21 +1,32 @@
-<h2>Pozíció lezárva</h2>
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
 
-<div style="background:white; padding:20px; border-radius:5px; color:black;">
-    <p><strong>Order ID:</strong>
-        <span th:text="${result.orderFillTransaction.id}"></span>
-    </p>
+<div th:fragment="content">
 
-    <p><strong>Instrumentum:</strong>
-        <span th:text="${result.orderFillTransaction.instrument}"></span>
-    </p>
+    <section class="wrapper style1 fade-up">
+        <div class="inner">
+            <h2>Tranzakció Eredménye</h2>
 
-    <p><strong>Zárt Units:</strong>
-        <span th:text="${result.orderFillTransaction.units}"></span>
-    </p>
+            <div style="background: #dcdcdc; padding: 30px; border-radius: 8px; color: #333; border-left: 5px solid #e91e63;">
+                <h3>Pozíció Lezárása</h3>
+                <hr style="border-color: #999; margin-bottom: 1em;" />
+
+                <p style="font-size: 1.2em; color: #333; font-weight: bold;">
+                    <span th:text="${result}"></span>
+                </p>
+            </div>
+
+            <br/>
+
+            <ul class="actions">
+                <li><a th:href="@{/forex-poziciok}" class="button primary">Vissza a nyitott pozíciókhoz</a></li>
+                <li><a th:href="@{/}" class="button">Vissza a főoldalra</a></li>
+            </ul>
+        </div>
+    </section>
+
 </div>
 
-<br/>
-
-<ul class="actions">
-    <li><a th:href="@{/forex-poziciok}" class="button">Vissza a pozíciókhoz</a></li>
-</ul>
+</body>
+</html>

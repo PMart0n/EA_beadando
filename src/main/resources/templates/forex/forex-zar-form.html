@@ -1,12 +1,33 @@
-<h2>Pozíció zárása</h2>
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
 
-<form method="post" th:action="@{/forex-zar}" th:object="${param}">
-    <div class="field">
-        <label>Trade ID</label>
-        <input type="number" th:field="*{tradeID}" style="color:black;" />
-    </div>
+<div th:fragment="content">
 
-    <ul class="actions">
-        <li><input type="submit" value="Zárás" class="button danger"/></li>
-    </ul>
-</form>
+    <section class="wrapper style1 fade-up">
+        <div class="inner">
+            <h2>Pozíció Zárása</h2>
+            <p>Adja meg a lezárni kívánt tranzakció azonosítóját (Trade ID). Ezt a "Nyitott Pozíciók" menüpontban találja meg.</p>
+
+            <form method="post" th:action="@{/forex-zar}" th:object="${param}">
+                <div class="fields">
+
+                    <div class="field half">
+                        <label for="tradeId">Trade ID</label>
+                        <input type="number" id="tradeId" th:field="*{tradeId}" style="color:black;" placeholder="Pl. 105" />
+                    </div>
+
+                </div>
+
+                <ul class="actions">
+                    <li><input type="submit" value="Pozíció Zárása" class="button primary"/></li>
+                    <li><a th:href="@{/}" class="button">Vissza a főoldalra</a></li>
+                </ul>
+            </form>
+        </div>
+    </section>
+
+</div>
+
+</body>
+</html>

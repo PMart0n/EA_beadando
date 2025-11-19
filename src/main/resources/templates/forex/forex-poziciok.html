@@ -1,29 +1,50 @@
-<h2>Nyitott pozíciók</h2>
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
 
-<table>
-    <thead>
-    <tr>
-        <th>Trade ID</th>
-        <th>Instrumentum</th>
-        <th>Units</th>
-        <th>Átlagár</th>
-        <th>Profit/Loss</th>
-    </tr>
-    </thead>
+<div th:fragment="content">
 
-    <tbody>
-    <tr th:each="t : ${trades.trades}">
-        <td th:text="${t.id}"></td>
-        <td th:text="${t.instrument}"></td>
-        <td th:text="${t.currentUnits}"></td>
-        <td th:text="${t.price}"></td>
-        <td th:text="${t.unrealizedPL}"></td>
-    </tr>
-    </tbody>
-</table>
+    <section class="wrapper style1 fade-up">
+        <div class="inner">
+            <h2>Nyitott Pozíciók</h2>
+            <p>Az alábbi táblázatban láthatóak a jelenleg nyitott kereskedései.</p>
 
-<br/>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Trade ID</th>
+                        <th>Instrumentum</th>
+                        <th>Mennyiség (Units)</th>
+                        <th>Nyitó Ár</th>
+                        <th>Profit / Veszteség</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="t : ${trades.trades}">
+                        <td th:text="${t.id}"></td>
+                        <td th:text="${t.instrument}"></td>
+                        <td th:text="${t.currentUnits}"></td>
+                        <td th:text="${t.price}"></td>
+                        <td th:text="${t.unrealizedPL}"></td>
+                    </tr>
+                    <tr th:if="${#lists.isEmpty(trades.trades)}">
+                        <td colspan="5" style="text-align: center; font-style: italic;">Nincs nyitott pozíció.</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
 
-<ul class="actions">
-    <li><a th:href="@{/forex-zar}" class="button">Pozíció zárása</a></li>
-</ul>
+            <br/>
+
+            <ul class="actions">
+                <li><a th:href="@{/forex-zar}" class="button primary">Pozíció zárása (ID alapján)</a></li>
+                <li><a th:href="@{/}" class="button">Vissza a főoldalra</a></li>
+            </ul>
+        </div>
+    </section>
+
+</div>
+
+</body>
+</html>

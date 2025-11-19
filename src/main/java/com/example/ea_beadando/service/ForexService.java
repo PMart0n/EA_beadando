@@ -9,6 +9,8 @@ import com.oanda.v20.instrument.*;
 import com.oanda.v20.primitives.*;
 import com.oanda.v20.trade.*;
 import org.springframework.stereotype.Service;
+import java.util.ArrayList;
+import java.util.List;
 
 import java.util.Collections;
 
@@ -20,8 +22,8 @@ public class ForexService {
 
     public ForexService() {
 
-        String token = "";
-        String account = "";
+        String token = "IDE_MÁSOLD_A_TOKENT";
+        String account = "IDE_MÁSOLD_AZ_ACCOUNT_ID-T";
 
         this.ctx = new ContextBuilder("https://api-fxpractice.oanda.com")
                 .setToken(token)
@@ -38,15 +40,25 @@ public class ForexService {
     }
 
     // ------------------ 2. Aktuális ár ------------------
-    public ClientPrice getCurrentPrice(String instrument) throws Exception {
-        PricingContext pc = new PricingContext(ctx);
-        PricingGetResponse response =
-                pc.get(accountId, Collections.singleton(instrument));
+    public String getCurrentPrice(String instrument) throws Exception {
+        List<String> instruments = new ArrayList<>();
+        instruments.add(instrument);
 
-        if (!response.getPrices().isEmpty()) {
-            return response.getPrices().get(0);
+        PricingGetRequest request = new PricingGetRequest(accountId, instruments);
+        PricingGetResponse resp = ctx.pricing.get(request);
+
+        StringBuilder sb = new StringBuilder();
+        for (ClientPrice price : resp.getPrices()) {
+            //kimenet formazas HTML kódokkal
+            sb.append("<div style='line-height: 1.8;'>");
+            sb.append("<b>Instrumentum:</b> ").append(price.getInstrument()).append("<br>");
+            sb.append("<b>Időpont:</b> ").append(price.getTime()).append("<br>");
+            sb.append("<b>Vételi ár (Bid):</b> <span style='color:red'>").append(price.getCloseoutBid()).append("</span><br>");
+            sb.append("<b>Eladási ár (Ask):</b> <span style='color:green'>").append(price.getCloseoutAsk()).append("</span><br>");
+            sb.append("<b>Státusz:</b> ").append(price.getStatus());
+            sb.append("</div>");
         }
-        return null;
+        return sb.toString();
     }
 
     // ------------------ 3. 10 historikus gyertya ------------------
